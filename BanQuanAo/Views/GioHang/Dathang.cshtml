@@ -1,0 +1,145 @@
+﻿@using BanQuanAo.Models
+@model List<Giohang>
+@{
+    ViewBag.Title = "Đơn đặt hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+@{
+    KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+}
+
+<section class="h-100" style="background-color: #eee;">
+    <div class="container py-5 h-100" style="margin-top: 5rem">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-4">
+
+                        <div class="row">
+
+                            <div class="col-lg-7">
+                                <h4 class="mb-3 text-body">Thông tin hàng hóa</h4>
+                                <hr>
+                                @foreach (var item in Model)
+                                {
+                                    <div class="card mb-3 card__shopping">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <img src="~/Public/images/HinhSanPham/@item.sAnhbia"
+                                                             class="img-fluid rounded-3" alt="Shopping item"
+                                                             style="width: 70px;">
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h5>@item.sTensanpham</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div style="width: 50px;">
+                                                        <h5 class="fw-normal mb-0">@item.iSoluong</h5>
+                                                    </div>
+                                                    <div style="width: auto;">
+                                                        <h5 class="mb-0">@String.Format("{0:0,0}", item.dThanhtien)đ</h5>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="text-end mt-4">
+                                    <a href="@Url.Action("Giohang", "GioHang")" class="text-dark btn btn-outline-warning border-2">Chỉnh sửa giỏ hàng<i class="fa-solid fa-cart-shopping"></i></a>
+                                </div>
+                                <div class="text-end mt-4 text-dark">
+                                    <h5>Tổng tiền đặt hàng: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+
+                                <div class="card bg-primary text-white rounded-3 card__shopping__book">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <h4 class="mb-0">Thông tin đặt hàng</h4>
+
+                                        </div>
+                                        @using (Html.BeginForm())
+                                        {
+                                            @Html.ValidationSummary(true)
+                                            <div class="mt-4">
+                                                <div class="form-outline form-white mb-3">
+                                                    <label class="form-label" for="typeName">
+                                                        Họ tên khách
+                                                        hàng
+                                                    </label>
+                                                    <input type="text" id="typeName"
+                                                           class="form-control form-control-lg" siez="5" disabled
+                                                           value="@kh.HoTen" />
+                                                </div>
+
+                                                <div class="form-outline form-white mb-3">
+                                                    <label class="form-label" for="typeName">Địa chỉ</label>
+                                                    <input type="text" id="typeName"
+                                                           class="form-control form-control-lg" siez="5" disabled
+                                                           value="@kh.DiachiKH" />
+                                                </div>
+
+                                                <div class="form-outline form-white mb-3">
+                                                    <label class="form-label" for="typeName">Số điện thoại</label>
+                                                    <input type="text" id="typeName"
+                                                           class="form-control form-control-lg" siez="5" disabled
+                                                           value="@kh.DienthoaiKH" />
+                                                </div>
+
+                                                <div class="row mb-4">
+                                                    <div class="col-md-6">
+                                                        <div class="form-outline form-white">
+                                                            <label class="form-label" for="typeExp">Ngày đặt</label>
+                                                            <input type="text" id="typeExp"
+                                                                   class="form-control form-control-lg" disabled size="7" value="@DateTime.Now.ToShortDateString()" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-outline form-white">
+                                                            <label class="form-label" for="typeExp">
+                                                                Ngày giao
+                                                            </label>
+                                                            <input type="date" id="datePickerId" name="Ngaygiao" class="form-control form-control-lg" size="7" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <hr class="my-4">
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-warning btn-block btn-lg" >
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Đồng ý đặt hàng <i class="fa-solid fa-check"></i></span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script>
+    datePickerId.min = new Date().toISOString().split("T")[0];
+</script>
+

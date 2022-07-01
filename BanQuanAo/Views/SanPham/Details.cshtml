@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<section class="details">
+    <h2 class="text-center">Chi tiết sản phẩm</h2>
+    <div class="details__content p-5 m-5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-4 text-center">
+                    <img src="~/Public/images/HinhSanPham/@Model.AnhSanPham" class="img-fluid" style="border-radius: 50px" alt="">
+                </div>
+                <div class="col-12 col-md-8">
+                    <h3>Thông số sản phẩm</h3>
+                    <div class="table-responsive">
+                        <table class="table ">
+                            <tr>
+                                <th>Mã sản phẩm</th>
+                                <td>@Model.MaSanPham</td>
+                            </tr>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <td>@Model.TenSanPham</td>
+                            </tr>
+                            <tr>
+                                <th>Số lượng</th>
+                                <td>@Model.SoLuongTon</td>
+                            </tr>
+                            <tr>
+                                <th>Ngày cập nhật</th>
+                                <td>@Model.NgayCapNhat</td>
+                            </tr>
+                            <tr>
+                                <th>Mô tả</th>
+                                <td>@Model.MoTa</td>
+                            </tr>
+                            <tr>
+                                <th>Giá bán: </th>
+                                <td> @String.Format("{0:0,0}", Model.GiaBan) đ</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="text-center w-100">
+                        @if (Session["Taikhoan"] == null)
+                        {
+                            <a href="@Url.Action("DangNhap", "NguoiDung")" class="btn btn-warning rounded-3 w-100">Mua hàng</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @iMasanpham = @Model.MaSanPham, @strURL = Request.Url.ToString()})" class="btn btn-warning rounded-3 w-100">Thêm vào giỏ</a>
+                        }
+                    </div>
+                   
+                    <div class="row mt-5">
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="p-2 text-center">
+                                <img src="~/Public/images/Details/icon3.svg" alt="Đổi trả với số điện thoại">
+                                <p class="px-4 pt-2">
+                                    Đổi trả cực dễ
+                                    chỉ cần số điện thoại
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="p-2 text-center">
+                                <img src="~/Public/images/Details/icon4.svg" alt="Đổi trả với số điện thoại">
+                                <p class="px-4 pt-2">
+                                    Miễn phí vận chuyển
+                                    cho đơn hàng trên 100k
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="p-2 text-center">
+                                <img src="~/Public/images/Details/icon5.svg" alt="Đổi trả với số điện thoại">
+                                <p class="px-4 pt-2">
+                                    60 ngày đổi trả
+                                    vì bất kỳ lý do gì
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="p-2 text-center">
+                                <img src="~/Public/images/Details/icon2.svg" alt="Đổi trả với số điện thoại">
+                                <p class="px-4 pt-2">
+                                    Hotline 1900.27.27.37
+                                    hỗ trợ từ 8h30 - 22h mỗi ngày
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="p-2 text-center">
+                                <img src="~/Public/images/Details/icon1.svg" alt="Đổi trả với số điện thoại">
+                                <p class="px-4 pt-2">
+                                    Đến tận nơi nhận hàng trả,
+                                    hoàn tiền trong 24h
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="p-2 text-center">
+                                <img src="~/Public/images/Details/icon6.svg" alt="Đổi trả với số điện thoại">
+                                <p class="px-4 pt-2">
+                                    Giao hàng nhanh toàn quốc
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+</div>
+</section>

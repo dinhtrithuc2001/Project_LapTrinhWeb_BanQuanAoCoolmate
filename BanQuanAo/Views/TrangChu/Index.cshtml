@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "Coolmate";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@model IEnumerable<BanQuanAo.Models.SANPHAM>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<section class="carousel__layout ">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                    class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="~/Public/images/Home/Carousel/Hero-banner-CleanVN_42.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Public/images/Home/Carousel/6.6-banner-hero-website.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item active">
+                <img src="~/Public/images/Home/Carousel/website_55.jpeg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <div class="carousel__overlay"></div>
+        <div class="carousel__text">
+            <div class="row">
+                <div class="carousel__text__card col-sm-12 col-md-4">
+                    <div class="carousel__text__item">
+                        <span>Miễn phí vận chuyển cho</span>
+                        <span> đơn hàng trên 200K </span>
+                    </div>
+                </div>
+                <div class="carousel__text__card col-sm-12 col-md-4">
+                    <div class="carousel__text__item">
+                        <span>
+                            60 ngày đổi trả vì
+                        </span>
+                        <span>
+                            bất kì lý do gì
+                        </span>
+                    </div>
+                </div>
+                <div class="carousel__text__card col-sm-12 col-md-4">
+                    <div class="carousel__text__item">
+                        <span>
+                            Đến tận nơi nhận hàng trả,
+                        </span>
+                        <span>
+                            hoàn tiền trong 24h
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+<!--List SP-->
+
+<section class="ListCard mt-5">
+    <div class="container">
+        <h2 class="text-center">Sản phẩm mới nhất</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 ">
+            @foreach (var sanPham in Model)
+            {
+                <div class="col">
+                    <div class="card border-warning mb-3 h-100 border-3">
+                        <a href="~/Public/images/HinhSanPham/@sanPham.AnhSanPham" data-lightbox="roadtrip">
+                            <img src="~/Public/images/HinhSanPham/@sanPham.AnhSanPham" class="card-img-top" alt="Ảnh sản phẩm">
+                        </a>
+                        
+                        <div class="card-body">
+                            <h4 class="card-title">@sanPham.TenSanPham</h4>
+                            <p class="card-text">
+                                @String.Format("{0:0,0}", sanPham.GiaBan) đ
+                            </p>
+                            <div class="d-flex">
+                                <a href="@Url.Action("Details", "SanPham", new { id = sanPham.MaSanPham })" class="btn btn-primary me-3 me-md-1 me-sm-2 me-lg-3">Chi tiết</a>
+                                @if (Session["Taikhoan"] == null)
+                                {
+                                    <a href="@Url.Action("DangNhap", "NguoiDung")" class="btn btn-warning rounded-3">Mua hàng</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @iMasanpham = @sanPham.MaSanPham, @strURL = Request.Url.ToString()})" class="btn btn-warning rounded-3">Thêm vào giỏ</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Excool -->
+
+<section class="excool">
+    <div class="container">
+        <div class="excool__content">
+            <div class="row">
+                <div class="excool__left excool__denim__text col-6">
+                    <h2 class="home__heading">Dòng sản phẩm công nghệ EXCOOL</h2>
+                    <div class="home__description">
+                        <p>Công nghệ Việt cho người Việt</p>
+                    </div>
+                    <div class="excool__button ">
+                        <a class="home__button" href="@Url.Action("Index", "SanPham")">Tìm hiểu thêm</a>
+                    </div>
+                </div>
+                <div class="excool__right col-6"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Denim -->
+<section class="denim ">
+    <div class="container">
+        <div class="denim__content row">
+            <div class="denim__left col-6">
+                <img src="~/Public/images/Home/Demin/img.jpg" alt="">
+            </div>
+            <div class="denim__right excool__denim__text col-6">
+                <h2 class="home__heading">
+                    Coolmate’s
+                    CLEAN DENIM
+                </h2>
+                <div class="home__description">
+                    <p>
+                        Chiếc quần Jeans này chính là sản phẩm đầu tiên Coolmate
+                        theo hướng Thời trang bền vững, từ nguồn gốc sợi
+                        Regenarative Cotton
+                    </p>
+                </div>
+                <div class="excool__button ">
+                    <a class="home__button" href="@Url.Action("Index", "SanPham")">Tìm hiểu thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About -->
+<section class="about">
+
+    <div class="container">
+        <div class="about__content row">
+            <div class="about__left col-6">
+                <img src="~/Public/images/Home/About/img.png" alt="">
+            </div>
+            <div class="about__right excool__denim__text col-6">
+                <h2 class="home__heading">Trải nghiệm mua sắm hài lòng với #Coolmate</h2>
+                <div class="home__description">
+                    <p>
+                        Giá cả hợp lý<br>
+                        Dịch vụ 100% hài lòng<br>
+                        60 ngày đổi trả<br>
+                        Tự hào sản xuất tại Việt Nam
+                    </p>
+                </div>
+                <div class="excool__button ">
+                    <a class="home__button" href="@Url.Action("Index", "SanPham")">Tìm hiểu thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- More -->
+<section class="more">
+    <div class="container">
+        <div class="more__bar row">
+            <p class="col-10">
+                CoolClub - Ưu đãi nhiều hơn, mua sắm vui hơn. Nhận ngay ưu đãi 7% cho lần mua sắm
+                tiếp theo
+            </p>
+            <a class="col-2" href="@Url.Action("Index", "SanPham")">Mua ngay</a>
+        </div>
+        <div class="more__details">
+            <div class="more__details__item">
+                <a href="@Url.Action("Index", "GioiThieu")">
+                    <img src="~/Public/images/Home/More/image1_59.jpg" alt="">
+                </a>
+            </div>
+            <div class="more__details__item">
+                <a href="@Url.Action("Index", "TinTuc")">
+                    <img src="~/Public/images/Home/More/image2.jpg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

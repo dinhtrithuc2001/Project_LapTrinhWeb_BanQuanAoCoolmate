@@ -1,0 +1,22 @@
+﻿
+@if (@ViewBag.Tongsoluong > 0)
+{
+    <a href="@Url.Action("GioHang","GioHang")" class="position-relative nav-link">
+        <i class="fa-solid fa-cart-arrow-down"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+             @ViewBag.Tongsoluong 
+            <span class="visually-hidden">unread messages</span>
+        </span>
+    </a>
+}
+else
+{
+    <a style="cursor: pointer" class="position-relative nav-link" title="Oops 🐔" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Giỏ hàng của bạn chưa có sản phẩm" data-bs-container="body">
+        <i class="fa-solid fa-cart-arrow-down"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            0
+            <span class="visually-hidden">unread messages</span>
+        </span>
+    </a>
+}
+

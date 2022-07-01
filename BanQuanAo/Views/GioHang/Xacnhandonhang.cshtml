@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Xacnhandonhang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container h-custom">
+    
+        
+    <div class="d-flex justify-content-center align-items-center w-100" style="height: 100vh" >
+        <div class="card m-auto" style=" max-width: 700px">
+            <div class="card-header p-4">
+                <h2 class="text-center">Đơn hàng thành công </h2>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Chúng tôi sẽ gửi hàng sớm nhất cho bạn <i class="fa-regular fa-face-smile-wink"></i></p>
+                <p class="card-text">Chúc bạn ngày mới vui vẻ <i class="fa-solid fa-heart"></i></p>
+                <div class="text-center">
+                    <a class="btn btn-primary me-2" href="@Url.Action("Index","TrangChu")">Về trang chủ</a>
+                    <a class="btn btn-warning" href="@Url.Action("Index","SanPham")">Tiếp tục mua hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUserSanPham.cshtml";
+}
+@using BanQuanAo.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SANPHAM>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<section class="ListCard">
+    <div class="container ListCard__content">
+        <h2 class="text-center mb-4">Tất cả sản phẩm</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  g-4">
+            @foreach (var sanPham in Model)
+            {
+                <div class="col">
+                    <div class="card mb-3 h-100">
+                        <a href="~/Public/images/HinhSanPham/@sanPham.AnhSanPham" data-lightbox="roadtrip">
+                            <img src="~/Public/images/HinhSanPham/@sanPham.AnhSanPham" class="card-img-top" alt="Ảnh sản phẩm">
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title">@sanPham.TenSanPham</h5>
+                            <p class="card-text">
+                                @String.Format("{0:0,0}", sanPham.GiaBan) đ
+                            </p>
+                            <div class="d-flex">
+                                <a href="@Url.Action("Details", "SanPham", new { id = sanPham.MaSanPham })" class="btn btn-primary me-3 me-md-1 me-sm-2 me-lg-3">Chi tiết</a>
+                                @if (Session["Taikhoan"] == null)
+                                {
+                                    <a href="@Url.Action("DangNhap", "NguoiDung")" class="btn btn-warning rounded-3">Mua hàng</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @iMasanpham = @sanPham.MaSanPham, @strURL = Request.Url.ToString()})" class="btn btn-warning rounded-3">Thêm vào giỏ</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</section>
+
+
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+

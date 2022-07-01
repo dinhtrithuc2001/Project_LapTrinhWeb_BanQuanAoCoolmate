@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <!--Bootstrap 5 CSS-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Style CSS-->
+    <link href="~/Public/css/StyleSheet.css" rel="stylesheet" />
+    <!--RenderSection("head", required: false)-->
+</head>
+<body>
+    <header id="site-header" class="header">
+        <div class="header__topbar">
+            <a href="#">Siêu Sale 6.6 ưu đãi tới 50%</a>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a href="@Url.Action("Index", "TrangChu")" class="navbar-brand navbar__logo">
+                    <img class="icon__logo" src="~/Public/images/Header/logo-coolmate.svg" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse navbar__list" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            @Html.ActionLink("Trang Chủ", "Index", "TrangChu", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Sản Phẩm", "Index", "SanPham", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Tin Tức", "Index", "TinTuc", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Giới Thiệu", "Index", "GioiThieu", null, new { @class = "nav-link" })
+                        </li>
+                        @if (Session["Taikhoan"] == null)
+                        {
+
+                            <li class="nav-item link__lg">
+                                @Html.ActionLink("Đăng Ký", "DangKy", "Nguoidung", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item link__lg">
+                                @Html.ActionLink("Đăng Nhập", "DangNhap", "Nguoidung", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                    </ul>
+                </div>
+                @if (Session["Taikhoan"] != null)
+                {<li>
+                        @using (Html.BeginForm("KetQuaTimKiem", "TimKiem", FormMethod.Post))
+                        {
+                            <input type="search" name="txtTimKiem" placeholder="Nhập tên sản phẩm" required autocomplete="off">
+                        }
+                    </li>
+                    <li>
+                        <span>
+                            @Session["TenTaiKhoan"]
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        @Html.Action("GioHangPartial", "GioHang")
+                    </li>
+                    <li>
+                        <a href="~/Nguoidung/Logout" class="ms-2"><i class="fa-solid fa-arrow-right-from-bracket link-dark"></i></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="me-2">
+                        @using (Html.BeginForm("KetQuaTimKiem", "TimKiem", FormMethod.Post))
+                        {
+                            <input type="search" name="txtTimKiem" placeholder="Nhập tên sản phẩm" required autocomplete="off">
+                        }
+                    </li>
+                    <div class="dropdown dropdown__lg">
+                        <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="icon__account" src="~/Public/images/Header/icon-account.svg" />
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li> @Html.ActionLink("Đăng Ký", "DangKy", "Nguoidung", null, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Đăng Nhập", "DangNhap", "Nguoidung", null, new { @class = "dropdown-item" })</li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="type__card">
+            <div class="container">
+                <div class="row">
+                    @Html.Action("Loai", "SanPham")
+                    <div class="dropdown col-12 col-md-6 mt-5 mt-md-0">
+                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Sắp xếp theo giá tiền
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("SapXepSanPham","SanPham",new { kieuSapXep = "tangdan"})">Giá tiền tăng dần</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("SapXepSanPham","SanPham",new { kieuSapXep = "giamdan"})">Giá tiền giảm dần </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer__item col-sm-12 col-md-4">
+                    <h5>Khám phá COOLMATE</h5>
+                    <li>@Html.ActionLink("Trang Chủ", "Index", "TrangChu", null, new { @class = "" })</li>
+                    <li>@Html.ActionLink("Sản Phẩm", "Index", "SanPham", null, new { @class = "" })</li>
+                    <li>@Html.ActionLink("Tin Tức", "Index", "TinTuc", null, new { @class = "" })</li>
+                    <li>@Html.ActionLink("Giới Thiệu", "Index", "GioiThieu", null, new { @class = "" })</li>
+                </div>
+                <div class="footer__item col-sm-12 col-md-4">
+                    <h5>Địa chỉ liên hệ</h5>
+                    <p> VQ4P+249, Phường Tân Phú, Quận 9, <br>Thành phố Hồ Chí Minh</p>
+                    <div class="footer__item__icon">
+                        <a href="https://www.facebook.com/Coolmate-3T-102857512487040" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.facebook.com/Coolmate-3T-102857512487040" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/Coolmate-3T-102857512487040" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer__item col-sm-12 col-md-4">
+                    <h5>Coolmate lắng nghe bạn</h5>
+                    <p>
+                        Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng
+                        cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-3.5.0.min.js"></script>
+    <!--Bootstrap 5 JS-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!--JS-->
+    <script>
+        // Popovers
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        })
+
+    </script>
+    <script src="~/Scripts/JavaScript.js"></script>
+
+</body>
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "102857512487040");
+    chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v14.0'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+</html>
