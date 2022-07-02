@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "ThongTinNguoiDung";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@using BanQuanAo.Models;
+
+@{
+    KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+}
+<div class="mx-auto" style="height: 100vh !important; display: flex; justify-content: center; align-items: center;">
+
+    <div class="card bg-warning text-white rounded-3 card__shopping__book mt-5" style="width: 50vw !important;">
+        <div class="card-body" style="background: #f9f86c; color: black; ">
+            <div class="d-flex justify-content-center align-items-center mb-4">
+                <h4 class="mb-0">Thông tin người dùng</h4>
+            </div>
+
+            <form class="">
+                <div class="mt-4">
+                    <div class="form-outline form-white mb-3">
+                        <label class="form-label" for="typeName">
+                            Mã khách hàng
+                        </label>
+                        <input type="text" id="typeName"
+                               class="form-control form-control-lg" siez="5" disabled
+                               value="@kh.MaKH" />
+                    </div>
+                    <div class="form-outline form-white mb-3">
+                        <label class="form-label" for="typeName">
+                            Họ tên khách hàng
+                        </label>
+                        <input type="text" id="typeName"
+                               class="form-control form-control-lg" siez="5" disabled
+                               value="@kh.HoTen" />
+                    </div>
+
+                    <div class="form-outline form-white mb-3">
+                        <label class="form-label" for="typeName">Địa chỉ</label>
+                        <input type="text" id="typeName"
+                               class="form-control form-control-lg" siez="5" disabled
+                               value="@kh.DiachiKH" />
+                    </div>
+
+                    <div class="form-outline form-white mb-3">
+                        <label class="form-label" for="typeName">Số điện thoại</label>
+                        <input type="text" id="typeName"
+                               class="form-control form-control-lg" siez="5" disabled
+                               value="@kh.DienthoaiKH" />
+                    </div>
+                    <div class="form-outline form-white mb-3">
+                        <label class="form-label" for="typeName">
+                            Email 
+                        </label>
+                        <input type="text" id="typeName"
+                               class="form-control form-control-lg" siez="5" disabled
+                               value="@kh.Email" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+

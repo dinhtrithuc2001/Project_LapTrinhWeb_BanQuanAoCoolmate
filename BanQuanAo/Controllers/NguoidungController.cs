@@ -85,5 +85,63 @@ namespace BanQuanAo.Controllers
             Session.Clear();
             return RedirectToAction("Index", "TrangChu");
         }
+
+        [HttpGet]
+        public ActionResult DoiMatKhau()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DoiMatKhau(FormCollection collection)
+        {
+            if(Session["Taikhoan"] != null)
+            {
+                KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+                KHACHHANG kh2 = db.KHACHHANGs.SingleOrDefault(n => n.MaKH == kh.MaKH);
+                var matKhauCu = AppHelper.GetMd5Hash(collection["Matkhau"]);
+                if(matKhauCu != kh2.Matkhau)
+                {
+                    ViewBag.Thongbaothaydoimatkhau = "Sai mật khẩu! Vui lòng nhập chính xác mật khẩu";
+                    return this.DoiMatKhau();
+                }
+                var matKhauMoi = collection["MatkhauMoi"];
+                var matKhauMoiNhapLai = collection["MatkhauMoiNhapLai"];
+                if(matKhauMoi != matKhauMoiNhapLai)
+                {
+                    ViewBag.Thongbaothaydoimatkhau = "Mật khẩu mới và Nhập lại mật khẩu mới không trùng nhau";
+                    return this.DoiMatKhau();
+                }
+
+                kh2.Matkhau = AppHelper.GetMd5Hash(collection["MatkhauMoi"]);
+                kh2.HoTen = kh.HoTen;
+                kh2.Taikhoan = kh.Taikhoan;
+                kh2.Email = kh.Email;
+                kh2.DiachiKH = kh.DiachiKH;
+                kh2.DienthoaiKH = kh.DienthoaiKH;
+                if (kh.MaKH > 0)
+                {
+                    var existing = db.KHACHHANGs.Single(user => user.MaKH == kh.MaKH);
+
+                    db.KHACHHANGs.DeleteOnSubmit(existing);
+                }
+               
+                db.KHACHHANGs.InsertOnSubmit(kh2);
+                Session["Taikhoan"] = kh2;
+                Session["TenTaikhoan"] = kh2.HoTen;
+                db.SubmitChanges();
+                return RedirectToAction("Index", "TrangChu");
+            }
+            else
+            {
+                return RedirectToAction("DangNhap");
+            }
+        }
+
+        public ActionResult ThongTinNguoiDung()
+        {
+            KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+            return View(kh);
+        }
     }
 }

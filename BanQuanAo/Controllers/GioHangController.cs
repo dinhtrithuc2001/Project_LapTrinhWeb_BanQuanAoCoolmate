@@ -178,5 +178,25 @@ namespace BanQuanAo.Controllers
         {
             return PartialView();
         }
+
+        // xem lịch sử mua hàng
+        public ActionResult LichSuMuaHang()
+        {
+            if (Session["TaiKhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "NguoiDung");
+            }
+            else
+            {
+                KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+                var type = (from t in data.DONDATHANGs where t.MaKH == kh.MaKH select t);
+                return View(type);
+            }
+        }
+
+        public ActionResult ChiTietLichSuMuaHang(int? id)
+        {
+            return View();
+        }
     }
 }

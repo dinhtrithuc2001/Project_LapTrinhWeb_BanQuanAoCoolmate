@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietLichSuMuaHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<section class="giohang container table-responsive ">
+    <h2 class="text-center mb-5">Chi Tiết Đơn Đặt Hàng Của @Session["TenTaiKhoan"]</h2>
+    <table class="table table__giohang align-middle table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Ảnh</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.iMasanpham</td>
+                    <td>@item.sTensanpham</td>
+                    <td>
+                        <img src="~/Public/images/HinhSanPham/@item.sAnhbia" class="img-fluid">
+                    </td>
+                    @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @iMaSp = item.iMasanpham }))
+                    {
+                        <td>
+
+                            <input id="txtSoLuong" type="number" min="1" name="txtSoluong" value="@item.iSoluong" size="1" />
+
+                        </td>
+                        <td>
+                            @String.Format("{0:0,0}", item.dDongia) VNĐ
+                        </td>
+                        <td>
+                            @String.Format("{0:0,0}", item.dThanhtien) VNĐ
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("XoaGioHang", new { @iMaSp = item.iMasanpham })" style="color: #919191;">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-success">
+                                <a href="@Url.Action("Details", "SanPham", new { id = item.iMasanpham})" class="text-dark">Chi tiết</a>
+                            </button>
+                            <input type="submit" value="Cập Nhật" class="btn btn-outline-primary text-dark" />
+                        </td>
+
+                    }
+                </tr>
+            }
+        </tbody>
+        <tfoot class="table-secondary">
+            <tr>
+                <td colspan="3"><b>Tổng số sản phẩm: @ViewBag.Tongsoluong</b></td>
+                <td colspan="3"><b>Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</b></td>
+                <td colspan="1">
+                    <button class="btn btn-danger">  @Html.ActionLink("Xóa giỏ", "XoaTatCaGioHang") </button>
+                </td>
+                <td colspan="1">
+                    <button class="btn btn-warning">
+                        @Html.ActionLink("Đặt hàng", "Dathang", "GioHang")
+                    </button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</section>
+
+

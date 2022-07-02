@@ -774,3 +774,28 @@ input[type=search]:focus {
 .News .review p {
     font-weight: 600;
 }
+
+/*Back to top*/
+.backToTop {
+    width: 50px;
+    height: 50px;
+    background: #f55f8d;
+    border-radius: 8px;
+    line-height: 50px;
+    text-align: center;
+    display: block;
+    position: fixed;
+    right: 2rem;
+    bottom: 6rem;
+    color: #fff;
+    transition: all .2s;
+    box-shadow: -4px 4px 24px -10px #f55f8d;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+}
+
+.cd-top--is-visible {
+    visibility: visible;
+    opacity: 1
+}

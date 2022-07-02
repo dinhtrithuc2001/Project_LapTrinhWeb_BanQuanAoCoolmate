@@ -1,0 +1,42 @@
+﻿
+
+@model IEnumerable<BanQuanAo.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "LichSuMuaHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@using BanQuanAo.Models;
+
+<section class="giohang container table-responsive" style="height: 100vh !important">
+    <h2 class="text-center mb-5">Các Đơn Hàng Của @Session["TenTaiKhoan"]</h2>
+    <table class="table table__giohang align-middle table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt hàng</th>
+                <th>Ngày giao hàng</th>
+                <th>Đã thanh toán</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.MaDonHang</td>
+                <td>@item.Ngaydat</td>
+                <td>@item.Ngaygiao</td>
+                <td>
+                    @item.Dathanhtoan
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "DoiMatKhau";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<section class="login container">
+    <h2 class="login__title title">Đổi mật khẩu</h2>
+    <span>@ViewBag.Thongbaothaydoimatkhau</span>
+    <div class="login__form">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+
+            <div>
+                <input type="password" class="form-control" placeholder="Mật khẩu" name="Matkhau" required>
+            </div>
+            <div>
+                <input type="password" class="form-control" placeholder="Mật khẩu mới" name="MatkhauMoi" required>
+            </div>
+            <div>
+                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu mới" name="MatkhauMoiNhapLai" required>
+            </div>
+            <div class="form__submit">
+                <input type="submit" value="Xác nhận thay đổi mật khẩu">
+            </div>
+        }
+    </div>
+
+</section>
+

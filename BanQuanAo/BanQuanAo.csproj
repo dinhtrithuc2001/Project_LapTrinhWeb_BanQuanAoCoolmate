@@ -172,6 +172,8 @@
     <Content Include="Scripts\jquery-3.5.0.min.js" />
     <Content Include="Scripts\jquery-3.5.0.slim.js" />
     <Content Include="Scripts\jquery-3.5.0.slim.min.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\util.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +250,10 @@
     <Content Include="Views\TinTuc\Index.cshtml" />
     <Content Include="Views\SanPham\SapXepSanPham.cshtml" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
+    <Content Include="Views\Nguoidung\DoiMatKhau.cshtml" />
+    <Content Include="Views\GioHang\ChiTietLichSuMuaHang.cshtml" />
+    <Content Include="Views\Nguoidung\ThongTinNguoiDung.cshtml" />
+    <Content Include="Views\GioHang\LichSuMuaHang.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
