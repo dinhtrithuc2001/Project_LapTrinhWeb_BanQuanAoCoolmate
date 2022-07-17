@@ -1,0 +1,221 @@
+﻿@model BanQuanAo.Models.SANPHAM
+
+@{
+    ViewBag.Title = "SuaSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="font-size: 26px; text-align: center; font-weight:bold">Sửa Thông Tin Sản Phẩm</h2>
+<style>
+    h2 {
+        font-size: 26px;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .tenanh {
+        width: 20%;
+    }
+
+    textarea, input, #MaloaiSP, #MaNCC {
+        color: #000000;
+        outline: none;
+        font-size: .9em;
+        padding: 1em 3em 1em 1em;
+        border: none;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        background: #d9d9d9;
+        width: 62%;
+        color: #000;
+        border-radius: 30px;
+        font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
+        letter-spacing: 1px;
+        text-align: center
+    }
+
+
+
+    .tenanh:hover {
+        transform: none
+    }
+
+    .form-horizontal {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .btn {
+        margin-left: 20%;
+        margin-top: 1%;
+        color: white;
+        background: #d2527f;
+        border: none;
+        padding: .7em 20px;
+        outline: none;
+        width: 20%;
+        font-size: 1em;
+        cursor: pointer;
+        letter-spacing: 1px;
+        font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
+        transition: 0.5s all;
+        -webkit-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -ms-transition: 0.5s all;
+        border-radius: 30px;
+        float: left;
+    }
+
+        .btn:hover {
+            color: #d2527f;
+            background: white;
+        }
+
+    @@media(max-width: 1040px) {
+        .return {
+            margin-left: 8%;
+            padding: 0.7em 43px;
+            margin-top: 0px;
+            width: 20%;
+        }
+    }
+
+    @@media(max-width: 780px) {
+        label {
+            margin-left: 22%;
+        }
+
+        .btn {
+            margin-left: 2%;
+            width: 25%;
+        }
+
+        .return {
+            margin-left: 4%;
+            padding: 0.7em 47px;
+            margin-top: 0px;
+            width: 28%;
+        }
+    }
+
+    @@media(max-width: 430px) {
+        label {
+            margin-left: 20%;
+        }
+
+        .return {
+            margin-left: 5%;
+            margin-top: 0px;
+            width: 29%;
+            padding: 0.7em 25px;
+        }
+    }
+
+    @@media(max-width: 380px) {
+        label {
+            margin-left: 18%;
+        }
+
+        .btn {
+            margin-left: 2%;
+            width: 25%;
+        }
+
+        .return {
+            margin-left: 3%;
+            margin-top: 0px;
+            width: 31%;
+            padding: 0.7em 24px;
+        }
+    }
+
+    @@media(max-width: 320px) {
+        label {
+            margin-left: 15%;
+        }
+
+        .btn {
+            margin-left: 2%;
+            width: 30%;
+        }
+
+        .return {
+            margin-top: 0px;
+            width: 30%;
+            padding: 0.7em 14px;
+        }
+    }
+</style>
+@using (Html.BeginForm("SuaSanPham", "QuanLyAdmin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaSanPham)
+        <div class="form-group">
+            Tên Sản Phẩm
+            <div class="col-md-10">
+                <input required type="text" name="TenSanPham" value="@Model.TenSanPham" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Giá
+            <div class="col-md-10">
+                <input required type="text" name="GiaBan" value="@Model.GiaBan" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Mô Tả
+            <div class="col-md-10">
+                <textarea required name="MoTa" rows="10" cols="40">@Model.MoTa</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            Ảnh Bìa
+            <div class="col-md-10">
+                <input type="file" name="fileupload" />
+                <div style="text-align: center;margin-left:40%"><img style="width:200px;display:flex;" src="~/Public/images/HinhSanPham/@Model.AnhSanPham" /></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="form-group">
+            Ngày Cập Nhật
+
+            <div class="col-md-10">
+                <p>@String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)</p>
+                <input required type="date" name="NgayCapNhat" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Số Lượng Tồn
+            <div class="col-md-10">
+                <input required type="text" name="SoLuongTon" value="@Model.SoLuongTon" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Loại Sản Phẩm
+            <div class="col-md-10">
+                @Html.DropDownList("MaloaiSP")
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+                <div style="text-align:center"><a class="btn" href="@Url.Action("SanPham","QuanLyAdmin")"> Trở về</a></div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -55,4 +55,10 @@
       <Association Name="LOAI_SANPHAM" Member="LOAI" ThisKey="MaLoai" OtherKey="MaLoai" Type="LOAI" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ADMIN" Member="ADMINs">
+    <Type Name="ADMIN">
+      <Column Name="Username" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

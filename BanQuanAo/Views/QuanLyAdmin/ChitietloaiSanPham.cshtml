@@ -1,0 +1,27 @@
+﻿@model BanQuanAo.Models.LOAI
+
+@{
+    ViewBag.Title = "ChitietloaiSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ChitietloaiSanPham</h2>
+
+<div>
+    <h4>LOAI</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "SuaLoaiSanPham", new { id = Model.MaLoai }) |
+    @Html.ActionLink("Back to List", "LoaiSanPham")
+</p>

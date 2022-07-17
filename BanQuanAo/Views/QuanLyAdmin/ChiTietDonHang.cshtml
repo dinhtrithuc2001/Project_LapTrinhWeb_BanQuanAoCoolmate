@@ -1,0 +1,81 @@
+﻿@using BanQuanAo.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<CHITIETDONTHANG>
+@{
+    ViewBag.Title = "ChiTietDonHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi Tiết Đơn Hàng</h2>
+
+<div class="Items" style="display: grid; margin-top: 20px; border:1">
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.DisplayName("Mã đơn hàng")
+            </th>
+            <th>
+                @Html.DisplayName("Mã sản phẩm")
+            </th>
+            <th>
+                @Html.DisplayName("Số lượng")
+            </th>
+            <th>
+                @Html.DisplayName("Đơn giá")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDonHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaSanPham)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soluong)
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.Dongia) VNĐ
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("ChiTietDonHang", new { page = page }))
+</div>
+@section MenuTrangAdmin{
+    <style>
+        .pagination {
+            display: flex;
+            padding-left: 0;
+            list-style: none;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+            .pagination > li > a {
+                font-weight: 500;
+                padding: 9px 15px;
+                position: relative;
+                display: block;
+                color: black;
+                text-decoration: none;
+                background-color: #fff;
+                border: 1px solid #dee2e6;
+            }
+
+        .page {
+            text-align: center;
+            justify-content: center;
+            display: inline;
+        }
+    </style>
+}

@@ -1,0 +1,85 @@
+﻿@model BanQuanAo.Models.SANPHAM
+
+@{
+    ViewBag.Title = "ChitietSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>THÔNG TIN CHI TIẾT</h2>
+
+<div>
+ 
+   
+    <dl class="dl-horizontal" style="border: 1px solid darkblue; border-radius: 10px;">
+        <div class="Items" style="display:flex; align-items:center; justify-content: center; margin-top: 20px;">
+            <dt style="margin-right: 20px;">
+                Tên sách:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenSanPham)
+            </dd>
+
+        </div>
+        <div class="Items" style="display: flex; margin-top: 20px; align-items: center; justify-content: center;">
+            <dt style="margin-right: 28px;">
+                Giá bán:
+            </dt>
+
+            <dd>
+                @String.Format("{0:0,0}", Model.GiaBan) VNĐ
+            </dd>
+        </div>        
+
+            <div class="Items" style="display: flex; margin-top: 20px; align-items: center; justify-content: center;">
+                <dt style="margin-right:42px; padding-left: 110px">
+                   Mô tả:
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MoTa)
+                </dd>
+            </div>
+          <div class="Items" style="display: flex; margin-top: 20px; align-items: center;justify-content: center;">
+            <dt style="margin-right: 28px; padding-left: 72px;">
+                Ảnh bìa:
+            </dt>
+
+            <dd>
+                <img src="~/Public/images/HinhSanPham/@Html.DisplayFor(model => model.AnhSanPham)" alt="Alternate Text" />
+            </dd>
+          </div>
+        
+        <div class="Items" style="display: flex; margin-top: 20px; align-items: center; justify-content: center; ">
+            <dt style="margin-right: 28px;">
+                Ngày cập nhật:
+            </dt>
+
+            <dd>
+                @String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)
+            </dd>
+        </div>
+        
+        <div class="Items" style="display: flex; margin-top: 20px; align-items: center; justify-content: center; ">
+            <dt style="margin-right: 28px; padding-right: 46px;">
+                Số lượng tồn:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SoLuongTon)
+            </dd>
+        </div>
+        <div class="Items" style="display: flex; margin-top: 20px; align-items: center; justify-content: center; margin-bottom:20px; ">
+            <dt style="margin-right: 28px; padding-right:46px;">
+                Nhà xuất bản:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MaLoai)
+            </dd>
+        </div>
+    </dl>
+</div>
+<p style="margin-top: 20px;">
+    @Html.ActionLink("Sửa", "SuaSanPham", new { id = Model.MaSanPham }) |
+    @Html.ActionLink("Trở về sản phẩm", "SanPham")
+</p>

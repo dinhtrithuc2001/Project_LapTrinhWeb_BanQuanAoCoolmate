@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLoginAndRegister.cshtml";
+}
+
+<div class="container">
+    <div class="header">
+        <h2>Đăng Nhập</h2>
+        <img src="~/Public/images/Header/logo-coolmate.svg" alt="">
+    </div>
+    <h2 >@ViewBag.ThongBaoDangNhap</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="form-control">
+
+        <label>Tên đăng nhập</label>
+        <input type="text" name="Username" placeholder=" carson1" id="username" required>
+        <span class="material-icons-sharp" id="icon"> check_circle </span>
+        <span class="material-icons-sharp" id="icon2"> error </span>
+        <small>Error message</small>
+
+
+        <label>Mật khẩu</label>
+        <input type="password" name="Password" placeholder="password" id="password" required>
+        <span class="material-icons-sharp" id="icon"> check_circle </span>
+        <span class="material-icons-sharp" id="icon2"> error </span>
+        <small>Error message</small>
+ 
+
+        </div>
+
+        <input type="submit" value="Đăng Nhập" class="btn btn-default" />
+    }
+</div>
+

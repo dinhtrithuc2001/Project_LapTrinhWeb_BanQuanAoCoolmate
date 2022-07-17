@@ -1,0 +1,99 @@
+﻿@*@model IEnumerable<AdminCoolmate.Models.SANPHAM>*@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Material CDN -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" />
+    <link rel="stylesheet" href="~/Public/css/app.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="~/Public/images/Header/logo-coolmate.svg" alt="">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp"> close </span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="@Url.Action("Index","DashBoard")" class="active">
+                    <span class="material-icons-sharp"> grid_view </span>
+                    <h3>Dashboard</h3>
+                </a>
+               
+                <a href="@Url.Action("SanPham","QuanLyAdmin")">
+                    <span class="material-icons-sharp"> receipt_long </span>
+                    <h3>Quản Lý Sản Phẩm</h3>
+                </a>
+                <a href="@Url.Action("LoaiSanPham","QuanLyAdmin")">
+                    <span class="material-icons-sharp"> receipt </span>
+                    <h3>Quản Lý Loại Sản Phẩm</h3>
+                </a>
+                <a href="@Url.Action("DonHang","QuanLyAdmin")">
+                    <span class="material-icons-sharp"> inventory </span>
+                    <h3>Quản Lý Đơn Hàng</h3>
+                </a>
+                <!-- <a href="#">
+            <span class="material-icons-sharp"> settings </span>
+                 <h3>Setting</h3>
+                </a> -->
+                <a href="@Url.Action("ChiTietDonHang","QuanLyAdmin")">
+              <span class="material-icons-sharp"> add </span>
+                    <h3>Chi Tiết Đơn Hàng</h3>
+                   </a>
+                <a href="@Url.Action("LogOut","Admin")">
+                    <span class="material-icons-sharp"> logout </span>
+                    <h3>logout</h3>
+                </a>
+
+        </aside>
+        <!-- end aside -->
+        <main>
+            <h1>Dashboard</h1>
+                @RenderBody()
+                <div>
+                    @RenderSection("MenuTrangAdmin",false)
+                </div>
+        </main>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp"> menu </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active"> light_mode </span>
+                    <span class="material-icons-sharp"> dark_mode </span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Carson</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+               
+                </div>
+            </div>
+            <!-- end main -->
+
+            @*<script>
+                tinymce.init({
+                    selector: 'textarea',
+                    plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+                    toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+                    toolbar_mode: 'floating',
+                    tinycomments_mode: 'embedded',
+                    tinycomments_author: 'Author name',
+                });
+            </script>*@
+            <script src="~/Scripts/js/app.js"></script>
+
+</body>
+
+</html>

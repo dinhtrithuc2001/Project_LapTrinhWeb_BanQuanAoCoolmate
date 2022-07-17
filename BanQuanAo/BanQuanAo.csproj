@@ -113,6 +113,8 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
+    <Content Include="Public\css\app.css" />
+    <Content Include="Public\css\login.css" />
     <Content Include="Public\css\StyleSheet.css" />
     <Content Include="Public\images\About\banner__1.jpg" />
     <Content Include="Public\images\About\banner__2.jpg" />
@@ -172,15 +174,20 @@
     <Content Include="Scripts\jquery-3.5.0.min.js" />
     <Content Include="Scripts\jquery-3.5.0.slim.js" />
     <Content Include="Scripts\jquery-3.5.0.slim.min.js" />
+    <Content Include="Scripts\js\app.js" />
+    <Content Include="Scripts\js\login.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\util.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\GioiThieuController.cs" />
     <Compile Include="Controllers\NguoidungController.cs" />
+    <Compile Include="Controllers\QuanLyAdminController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TinTucController.cs" />
@@ -254,6 +261,23 @@
     <Content Include="Views\GioHang\ChiTietLichSuMuaHang.cshtml" />
     <Content Include="Views\Nguoidung\ThongTinNguoiDung.cshtml" />
     <Content Include="Views\GioHang\LichSuMuaHang.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\DashBoard\Index.cshtml" />
+    <Content Include="Views\QuanLyAdmin\ChiTietDonHang.cshtml" />
+    <Content Include="Views\QuanLyAdmin\ChitietloaiSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\ChitietSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\DonHang.cshtml" />
+    <Content Include="Views\QuanLyAdmin\LoaiSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\SanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\SuaLoaiSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\SuaSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\ThemmoiloaiSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\ThemmoiSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\XoaLoaiSanPham.cshtml" />
+    <Content Include="Views\QuanLyAdmin\XoaSanPham.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutLoginAndRegister.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

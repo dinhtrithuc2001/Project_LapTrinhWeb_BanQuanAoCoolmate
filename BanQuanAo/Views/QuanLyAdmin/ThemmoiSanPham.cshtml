@@ -1,0 +1,82 @@
+﻿@model BanQuanAo.Models.SANPHAM
+
+@{
+    ViewBag.Title = "ThemmoiSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>THÊM SẢN PHẨM MỚI</h2>
+
+@using (Html.BeginForm("ThemmoiSanPham","QuanLyAdmin",FormMethod.Post, new { @enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal" style="border: 1px solid darkblue; border-radius: 10px;">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group"style="display:flex; justify-content:center; align-items:center;margin-top:20px;">
+            <h3 style="margin-right:35px;">Tên sản phẩm</h3>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group"style="display:flex; justify-content:center; align-items:center;margin-top:20px;">
+           <h3 style="margin-right:70px; padding-left:2px;">Giá bán</h3>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group"style="display:flex; justify-content:center; align-items:center;margin-top:20px;">
+            <h3 style="margin-right:83px; padding-left:5px;">Mô tả</h3>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:flex; justify-content:center; align-items:center;margin-top:20px;">
+            <h3 style="margin:0px 62px;;">Ảnh sản phẩm</h3>
+            <div class="col-md-10">
+                <input type="file" name="fileupload"/>
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <div class="form-group"style="display:flex; justify-content:center; align-items:center;margin-top:20px;">
+           <h3 style="margin-right:70px; padding-left:2px;">Ngày cập nhật</h3>
+            <div class="col-md-10" style="padding-right:67px;">
+                <input type="date" name="NgayCapNhat"/>
+                @Html.ValidationMessageFor(model => model.NgayCapNhat)
+            </div>
+        </div>
+
+        <div class="form-group"style="display:flex; justify-content:center; align-items:center;margin-top:20px;">
+            <h3 style="margin-right:50px; padding-left:2px;">Số lượng tồn</h3>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group"style="display:flex; justify-content:center; align-items:center;margin-top:20px;">
+            <h3 style="margin-right:70px; padding-left:2px;">Mã loại</h3>
+            <div class="col-md-10" style="padding-right:35px;">
+               @Html.DropDownList("MaLoai")
+            </div>
+        </div>
+
+        <div class="form-group" style="display:flex; justify-content:center; align-items:center;margin-top:20px";>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="THÊM MỚI" style=" margin-right: 98px; margin-bottom: 20px; padding: 0 20px;" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về sản phẩm", "SanPham")
+</div>
